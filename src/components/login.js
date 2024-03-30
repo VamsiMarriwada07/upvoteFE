@@ -3,7 +3,8 @@ import '../styles/test.css';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Lottie from "lottie-react";
-import Youtube from '../assets/youtube.json'
+import Youtube from '../assets/youtube.json';
+import Cookies from 'js-cookie';
 
 function Login(){
     const [values, setValues] =useState({
@@ -17,6 +18,7 @@ function Login(){
         axios.post("http://localhost:8081/login",values)
         .then(res => {
             if(res.data.Status==="Success"){
+                Cookies.set('upvote', res.cookie, { expires: 7 });
                 navigate('/')
             }else{
                 console.log(res)
