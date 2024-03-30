@@ -18,8 +18,7 @@ function Login(){
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`,values)
         .then(res => {
             if(res.data.Status==="Success"){
-                console.log(res);
-                Cookies.set('upvote', res.data.cookie, { expires: 7 });
+            
                 navigate('/')
             }else{
                 console.log(res)
