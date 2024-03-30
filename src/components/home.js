@@ -49,7 +49,7 @@ export default function Cart() {
 
   useEffect(() => {
       axios
-        .post(`upvotebe-production.up.railway.app/retrieve`,{name})
+        .post(`${process.env.REACT_APP_BACKEND_URL}/retrieve`,{name})
         .then((res) => {
           const data = JSON.parse(res.data);
           setItems(data);
