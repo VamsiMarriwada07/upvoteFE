@@ -15,7 +15,7 @@ function Login(){
     axios.defaults.withCredentials = true;
     const handleSubmit = (e)=>{
         e.preventDefault()
-        axios.post("http://localhost:8081/login",values)
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`,values)
         .then(res => {
             if(res.data.Status==="Success"){
                 Cookies.set('upvote', res.cookie, { expires: 7 });
