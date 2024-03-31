@@ -9,6 +9,7 @@ import Doubt from "../assets/doubt.json";
 import Modal from "./modal";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from 'js-cookie';
 
 
 export default function Cart() {
