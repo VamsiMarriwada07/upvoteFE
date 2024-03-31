@@ -2,6 +2,7 @@ import '../styles/navbar.css'
 import React, { useState } from 'react';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 
 
@@ -9,12 +10,7 @@ export default function Navbar({auth,name}){
     const navigate = useNavigate()
     const [openProfile, setOpenProfile] = useState(false);
     const handleDelete=()=>{
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/logout`)
-        .then(res=>{
-            window.location.reload(true)
-        }).catch(err =>{
-            console.log(err)
-        } )
+        Cookies.remove('token');
     }
     return(
         <div className="main flex flex-row items-center justify-around">
