@@ -6,6 +6,7 @@ import ItemCards from "./itemcard";
 import '../styles/products.css';
 import Lottie from "lottie-react";
 import Loading from "../assets/loading.json";
+import Doubt from "../assets/doubt.json";
 import Modal from "./modal";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
