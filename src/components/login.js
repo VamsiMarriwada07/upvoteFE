@@ -44,7 +44,7 @@ function Login(){
     return(
         <div className="h-screen flex justify-center items-center sign">
             <div className="Card bg-white text-center p-10 rounded-xl border-solid border border-gray-400">
-                <h1 className="text-5xl mb-5"><a href="/">DevHub</a></h1>
+                <h1 className="text-5xl mb-5"><a href="/">DevSavvy</a></h1>
                 <h1 className="text-2xl">Login</h1> 
                 <div className="flex justify-center items-center"><Lottie animationData={Youtube} style={{height:170}}></Lottie></div>
                 <form onSubmit={handleSubmit}>
