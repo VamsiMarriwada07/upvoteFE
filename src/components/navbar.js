@@ -9,6 +9,7 @@ export default function Navbar({ auth, name }) {
   const [openProfile, setOpenProfile] = useState(false);
   const handleDelete = () => {
     Cookies.remove('token');
+    window.location.reload(true)
   };
   return (
     <div className="main flex flex-row items-center justify-around">
