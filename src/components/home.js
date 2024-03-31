@@ -117,7 +117,9 @@ export default function Cart() {
           <button className=" font-semibold border-[1px] rounded-[10px] border-black h-8 w-24 hover:border-green-600 hover:text-green-600 hover:border-[3px] hover:shadow-xl ease-out duration-40" onClick={openModal}>New +</button>
         </div>
         {isLoading ? ( 
-          <div>Loading...</div>
+          <div className="flex justify-center items-center">
+          <Lottie animationData={Doubt} style={{height:150}}></Lottie>
+      </div>
         ) : (
           <div className="flex justify-center flex-col items-center mt-5">
             {items.map((item, index) => (
