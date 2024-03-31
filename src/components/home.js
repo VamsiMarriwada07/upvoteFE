@@ -37,7 +37,8 @@ export default function Cart() {
 
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/`).then((res) => {
+    const token = Cookies.get('token');
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}`,{token}).then((res) => {
       if (res.data.Status === "Success") {
         setName(res.data.name);
         setAuth(true);
