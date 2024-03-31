@@ -19,6 +19,7 @@ export default function Cart() {
   const [name,setName] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [input1, setInput1] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   
 
   const notify = () => {
@@ -51,14 +52,17 @@ export default function Cart() {
   }, []); // Empty dependency array to run only once when the component mounts
 
   useEffect(() => {
+      setIsLoading(true);
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/retrieve`,{name})
         .then((res) => {
           const data = JSON.parse(res.data);
           setItems(data);
+          setIsLoading(false);
         })
         .catch((err) => {
           console.log(err);
+          setIsLoading(false);
         });
     
   }, [name]);
@@ -105,46 +109,50 @@ export default function Cart() {
       console.error("Error updating votes:", error);
     });
   }
- if(!isModalOpen){
-  return (
-    <div>
-      <Navbar auth={auth} name={name}/>
-      <div className="flex justify-end items-center mt-14 mr-[30%]">
-        <button className=" font-semibold border-[1px] rounded-[10px] border-black h-8 w-24 hover:border-green-600 hover:text-green-600 hover:border-[3px] hover:shadow-xl ease-out duration-40" onClick={openModal}>New +</button>
-      </div>
-      <div className="flex justify-center flex-col items-center mt-5">
-        {items.map((item, index) => (
-          <div key={index}>
-            <ItemCards item={item} user={name} handleUpvote={handleUpvote} handleDownvote={handleDownvote}/>
-          </div>
-        ))}
-      </div>
-      <div className="flex justify-center items-center mt-14">
-          <p className="text-xl font-bold mr-5">Ask your doubts</p>
-          <Lottie animationData={Doubt} style={{height:150}}></Lottie>
-      </div>
+ if (!isModalOpen) {
+    return (
       <div>
-        <Footer />
-        
-      </div>
-      <ToastContainer />
-    </div>
-        
-  );
+        <Navbar auth={auth} name={name} />
+        <div className="flex justify-end items-center mt-14 mr-[30%]">
+          <button className=" font-semibold border-[1px] rounded-[10px] border-black h-8 w-24 hover:border-green-600 hover:text-green-600 hover:border-[3px] hover:shadow-xl ease-out duration-40" onClick={openModal}>New +</button>
+        </div>
+        {isLoading ? ( 
+          <div>Loading...</div>
+        ) : (
+          <div className="flex justify-center flex-col items-center mt-5">
+            {items.map((item, index) => (
+              <div key={index}>
+                <ItemCards item={item} user={name} handleUpvote={handleUpvote} handleDownvote={handleDownvote} />
+              </div>
+            ))}
+          </div>
+        )}
+        <div className="flex justify-center items-center mt-14">
+          <p className="text-xl font-bold mr-5">Ask your doubts</p>
+          <Lottie animationData={Doubt} style={{ height: 150 }}></Lottie>
+        </div>
+        <div>
+          <Footer />
 
- }
- if(isModalOpen){
-  console.log(isModalOpen);
-  return(
-    <Modal
+        </div>
+        <ToastContainer />
+      </div>
+
+    );
+
+  }
+  if (isModalOpen) {
+    console.log(isModalOpen);
+    return (
+      <Modal
         isAuth={auth}
         isOpen={isModalOpen}
         onClose={closeModal}
         onInputChange={handleInputChange}
         onAddNew={handleAddNew}
-    />
-  );
-  
- }
-  
+      />
+    );
+
+  }
+
 }
