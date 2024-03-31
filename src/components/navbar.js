@@ -9,7 +9,7 @@ export default function Navbar({auth,name}){
     const navigate = useNavigate()
     const [openProfile, setOpenProfile] = useState(false);
     const handleDelete=()=>{
-        axios.get('http://localhost:8081/logout')
+        axios.get(`${process.env.REACT_APP_BACKEND_URL/logout`)
         .then(res=>{
             window.location.reload(true)
         }).catch(err =>{
