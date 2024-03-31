@@ -10,15 +10,19 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Login(){
     const notifyWP = () => {
-    toast.error("Password is incorrect",{
-      position: "top-center"
-  });
+        toast.error("Password is incorrect",{
+            position: "top-center"
+        });
+    }
+    
     const [values, setValues] =useState({
         email:"",
         password:""
     })
+    
     const navigate = useNavigate()
     axios.defaults.withCredentials = true;
+    
     const handleSubmit = (e)=>{
         e.preventDefault()
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`,values)
@@ -29,14 +33,14 @@ function Login(){
                 navigate('/')
             }else{
                 if(res.data.Error==="Password not matched"){
-                    notifyWP();
+                    notifyWP(); // Call notifyWP if password is incorrect
                 }
                 console.log(res)
             }
-        
         })
         .catch(err => console.log(err))
     }
+    
     return(
         <div className="h-screen flex justify-center items-center sign">
             <div className="Card bg-white text-center p-10 rounded-xl border-solid border border-gray-400">
@@ -48,12 +52,11 @@ function Login(){
                     <input type="password" name="password" placeholder="Password" className=" border px-5 py-2 mt-5 rounded-md w-80" onChange={(e)=>setValues({...values,password:e.target.value})}/>
                     <button type="submit" className="butto mt-5 mb-2">Login</button>
                 </form>
-            <Link to="/signup" className="text-pink-600 font-bold">Create Account</Link>
+                <Link to="/signup" className="text-pink-600 font-bold">Create Account</Link>
             </div>
-        <ToastContainer />
+            <ToastContainer />
         </div>
     )
 }
+
 export default Login;
-
-
