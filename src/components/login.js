@@ -5,8 +5,14 @@ import axios from "axios";
 import Lottie from "lottie-react";
 import Youtube from '../assets/youtube.json';
 import Cookies from 'js-cookie';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login(){
+    const notifyWP = () => {
+    toast.error("Password is incorrect",{
+      position: "top-center"
+  });
     const [values, setValues] =useState({
         email:"",
         password:""
@@ -22,6 +28,9 @@ function Login(){
                 console.log(res);
                 navigate('/')
             }else{
+                if(res.data.Error==="Password not matched"){
+                    notifyWP();
+                }
                 console.log(res)
             }
         
@@ -41,6 +50,7 @@ function Login(){
                 </form>
             <Link to="/signup" className="text-pink-600 font-bold">Create Account</Link>
             </div>
+        <ToastContainer />
         </div>
     )
 }
