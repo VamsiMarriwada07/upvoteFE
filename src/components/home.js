@@ -5,7 +5,7 @@ import Footer from "./footer";
 import ItemCards from "./itemcard";
 import '../styles/products.css';
 import Lottie from "lottie-react";
-import Doubt from "../assets/doubt.json";
+import Loading from "../assets/loading.json";
 import Modal from "./modal";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -118,7 +118,7 @@ export default function Cart() {
         </div>
         {isLoading ? ( 
           <div className="flex justify-center items-center">
-          <Lottie animationData={Doubt} style={{height:150}}></Lottie>
+          <Lottie animationData={Loading} style={{height:150}}></Lottie>
       </div>
         ) : (
           <div className="flex justify-center flex-col items-center mt-5">
