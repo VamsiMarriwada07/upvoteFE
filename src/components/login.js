@@ -14,6 +14,11 @@ function Login(){
             position: "top-center"
         });
     }
+    const notifyWE = () => {
+        toast.error("Email doesn't exists, please create a new account",{
+            position: "top-center"
+        });
+    }
     
     const [values, setValues] =useState({
         email:"",
@@ -33,7 +38,10 @@ function Login(){
                 navigate('/')
             }else{
                 if(res.data.Error==="Password not matched"){
-                    notifyWP(); // Call notifyWP if password is incorrect
+                    notifyWP(); 
+                }
+                if(res.data.Error==="No mail existed"){
+                    notifyWE();
                 }
                 console.log(res)
             }
