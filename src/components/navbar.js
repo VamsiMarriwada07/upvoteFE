@@ -15,7 +15,7 @@ export default function Navbar({ auth, name }) {
     <div className="main flex flex-row items-center justify-around">
       <div className="logo flex flex-row items-center">
         <h1 className="text-5xl font-semibold hover:font-bold hover:text-pink-600 duration-150">
-          <a href="/">DevHub</a>
+          <a href="/">DevSavvy</a>
         </h1>
       </div>
       <div className="options flex flex-row justify-end mr-[-30px]">
